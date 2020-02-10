@@ -9,8 +9,18 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title = 'cinema-app';
 
-  public movie: any = {
-    title: 'Joker',
-    year: 2019
-  }
+  public movies: any [] = [
+    {
+      title: 'Joker',
+      year: 2019
+    },
+    {
+      title: 'Rome',
+      year: 2003
+    },
+    {
+      title: 'Avengers: End Game',
+      year: 2019
+    }
+  ]
 }
