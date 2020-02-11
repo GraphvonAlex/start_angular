@@ -5,6 +5,8 @@ div.movie {
     font-family: 'MonotonRegular';
     letter-spacing: .25rem;
     text-transform: uppercase; }
+  div.movie p {
+    font-family: 'CodaCaptionExtraBold'; }
 
 .action li {
   cursor: pointer;

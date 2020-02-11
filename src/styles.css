@@ -4,3 +4,13 @@
     font-family: 'MonotonRegular';
     src: url("./assets/fonts/MonotonRegular.ttf") format("truetype");
 }
+
+@font-face {
+    font-family: 'RussoOneRegular';
+    src: url('./assets/fonts/RussoOneRegular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CodaCaptionExtraBold';
+    src: url('./assets/fonts/CodaCaptionExtraBold.ttf') format('truetype');
+}

@@ -2,8 +2,8 @@
     <p>This is an appcomponent {{title | uppercase}}</p>
 
     <div *ngFor="let movie of movies">
-        <div class="movie" *ngIf="(movie.contry == defaultContry) || defaultContry == 'all' ">
-            <h2 [ngClass]="{'old text-danger': movie.year < 2019 , 'title': true}">{{movie.title}}</h2>
+        <div class="movie" *ngIf="(movie.contry.iso == defaultContry) || defaultContry == 'all' ">
+            <h2 [ngClass]="{'old text-danger': movie.year < 2000 , 'title': true}">{{movie.title}}</h2>
             <p [ngClass]="{'year': true}">{{movie.year}}</p>
         </div>
     </div>
@@ -17,9 +17,8 @@
 
     <div id="filter">
         <select class="form-control" size="1" [(ngModel)]="defaultContry">
-        <option value="all">all</option>
-        <option value="us">United States</option>
-        <option value="it">Italian</option>
+        <option value="all" selected>all</option>
+        <option *ngFor = "let contry of countries" value="{{contry.iso}}" >{{contry.text}}</option>
       </select>
     </div>
 </div>
