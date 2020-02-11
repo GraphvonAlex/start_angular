@@ -17,8 +17,8 @@
 
     <div id="filter">
         <select class="form-control" size="1" [(ngModel)]="defaultContry">
-      <option value="all" selected>all</option>
-      <option *ngFor = "let contry of countries | keyvalue" value="{{contry.key}}" >{{contry.value.text}}</option>
+        <option value="all" selected>all</option>
+        <option *ngFor = "let contry of countries | keyvalue" value="{{contry.key}}" >{{contry.value.text}}</option>
     </select>
     </div>
 </div>
