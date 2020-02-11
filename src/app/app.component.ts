@@ -6,7 +6,7 @@ import { Component, OnInit,  } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public title = 'cinema-app';
 
   public defaultContry = 'all';
