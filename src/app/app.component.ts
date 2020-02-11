@@ -1,4 +1,4 @@
-import { Component,  } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +6,12 @@ import { Component,  } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   public title = 'cinema-app';
 
   public defaultContry = 'all';
-  public countries: Set<string> = new Set();
+  // public countries: Set<string> = new Set();
+  public countries: Map<string, any> = new Map<string, any>();
   public movies: any [] = [
     {
       title: 'Italian Movie',
@@ -41,7 +42,7 @@ export class AppComponent {
       year: 2019,
       contry: {
         iso: 'us',
-        text: 'United States of America'
+        text: 'United States'
       }
     },
     {
@@ -61,13 +62,11 @@ export class AppComponent {
     });
   }
 
-  public constructor() {
-    this.filter();
-  }
+  public constructor() {}
 
-  public filter(): void {
+  public ngOnInit(): void {
     this.movies.forEach(movie =>{
-      this.countries.add(movie.contry);
+      this.countries.set(movie.contry.iso, movie.contry);
     });
   }
 }
