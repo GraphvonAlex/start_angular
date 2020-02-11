@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from 'src/app/core/service/movie.service';
+import { take } from 'rxjs/operators';
+import { Movie } from 'src/app/core/model/movie';
 
 @Component({
   selector: 'app-home',
@@ -8,64 +11,38 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public title = 'cinema-app';
-  public defaultContry = 'all';
-  public countries: Map<string, any> = new Map<string, any>();
+  public defaultYear = 0 ;
+  public years: number[] = [];
+  // public countries: Map<string, any> = new Map<string, any>();
 
-  public movies: any [] = [
-    {
-      title: 'Italian Movie',
-      year: 1993,
-      contry: {
-        iso: 'it',
-        text: 'Italie'
-      }
-    },
-    {
-      title: 'Intouchable ',
-      year: 2011,
-      contry: {
-        iso: 'fr',
-        text: 'France'
-      }
-    },
-    {
-      title: 'Rec',
-      year: 2007,
-      contry: {
-        iso: 'es',
-        text: 'Spain'
-      }
-    },
-    {
-      title: 'Joker',
-      year: 2019,
-      contry: {
-        iso: 'us',
-        text: 'United States'
-      }
-    },
-    {
-      title: 'GreenBook',
-      year: 2017,
-      contry: {
-        iso: 'us',
-        text: 'United States'
-      }
-    }
-  ];
+  public movies: Movie [] = [];
 
-  constructor() { }
+  constructor(
+    private movieService: MovieService
+  ) {}
 
   ngOnInit(): void {
-    this.movies.forEach(movie =>{
-      this.countries.set(movie.contry.iso, movie.contry);
+    const years: Set<number> = new Set<number>();
+
+    this.movieService.all()
+    .pipe(
+      take(1)
+    )
+    .subscribe((Response: any[]) => {
+      console.log(`Response : ${JSON.stringify(Response)}`);
+      this.movies = Response.map((movie: Movie) => {
+        years.add(movie.year);
+        return new Movie().deserialize(movie);
+      });
+      this.years = Array.from(years).sort();
+      // console.log(`Response : ${JSON.stringify(this.movies)}`);
     });
   }
 
-  public toggleContry(): void {
-    this.defaultContry = (this.defaultContry === 'us') ? this.defaultContry = 'it' : this.defaultContry = 'us';
-    this.movies.forEach((movie: any) => {
-      movie.show = movie.contry.iso === this.defaultContry;
-    });
-  }
+  // public toggleContry(): void {
+  //   this.defaultContry = (this.defaultContry === 'us') ? this.defaultContry = 'it' : this.defaultContry = 'us';
+  //   this.movies.forEach((movie: any) => {
+  //     movie.show = movie.contry.iso === this.defaultContry;
+  //   });
+  // }
 }
