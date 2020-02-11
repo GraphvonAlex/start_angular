@@ -1,24 +1,20 @@
-<div class="container">
-    <p>This is an appcomponent {{title | uppercase}}</p>
-
-    <div *ngFor="let movie of movies">
-        <div class="movie" *ngIf="(movie.contry.iso == defaultContry) || defaultContry == 'all' ">
-            <h2 [ngClass]="{'old text-danger': movie.year < 2000 , 'title': true}">{{movie.title}}</h2>
-            <p [ngClass]="{'year': true}">{{movie.year}}</p>
-        </div>
-    </div>
-
-    <!-- <div class="action">
-        <ul class="d-flex flex-row align-items-center p-0 m-0">
-            <li class="mr-3 btn btn-outline-primary" [ngClass]="{'active' : defaultContry == 'us'}" (click)="defaultContry = 'us'">[us]</li>
-            <li class="btn btn-outline-primary " [ngClass]="{'active' : defaultContry == 'it'}" (click)="defaultContry = 'it'">[it]</li>
+<nav>
+    <div class="container">
+        <ul class="navbar-nav d-flex align-items-center">
+            <li class="nav-item">
+                <a class="text-danger" [routerLink]="['home']" routerLinkActive="active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="text-danger" [routerLink]="['login']" routerLinkActive="active">login</a>
+            </li>
         </ul>
-    </div> -->
-
-    <div id="filter">
-        <select class="form-control" size="1" [(ngModel)]="defaultContry">
-        <option value="all" selected>all</option>
-        <option *ngFor = "let contry of countries | keyvalue" value="{{contry.key}}" >{{contry.value.text}}</option>
-      </select>
     </div>
-</div>
+</nav>
+<main>
+    <div class="container">
+        <router-outlet></router-outlet>
+        <footer>
+            this is the footer
+        </footer>
+    </div>
+</main>
