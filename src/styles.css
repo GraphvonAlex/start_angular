@@ -1,16 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
 @font-face {
-    font-family: 'MonotonRegular';
-    src: url("./assets/fonts/MonotonRegular.ttf") format("truetype");
-}
+  font-family: 'MonotonRegular';
+  src: url("./assets/fonts/MonotonRegular.ttf") format("truetype"); }
 
-@font-face {
-    font-family: 'RussoOneRegular';
-    src: url('./assets/fonts/RussoOneRegular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'CodaCaptionExtraBold';
-    src: url('./assets/fonts/CodaCaptionExtraBold.ttf') format('truetype');
-}
+/*# sourceMappingURL=styles.css.map */
