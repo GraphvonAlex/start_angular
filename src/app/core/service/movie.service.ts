@@ -15,7 +15,7 @@ export class MovieService {
   ) { }
 
   public async allMovies() {
-    const apiRoute = `${environment.apiRoot}movie`;
+    const apiRoute = `${environment.apiRoot}`;
     const movies = await this.httpClient.get(environment.apiRoot).toPromise();
     console.log(movies);
     return movies;
@@ -35,8 +35,21 @@ export class MovieService {
     console.log(`Movies : ${JSON.stringify(movies)}`);
   }
 
+  /**
+   * Find all movies
+   */
   public all(): Observable<Movie[]> {
-    const apiRoute = `${environment.apiRoot}movie`;
+    const apiRoute = `${environment.apiRoot}`;
+    return this.httpClient.get<Movie[]>(
+      apiRoute
+    );
+  }
+
+  /**
+   * Find Movies By Partial title
+   */
+  public byTitle(title: string): Observable<Movie[]> {
+    const apiRoute = `${environment.apiRoot}byTitleP?t=${title}`;
     return this.httpClient.get<Movie[]>(
       apiRoute
     );

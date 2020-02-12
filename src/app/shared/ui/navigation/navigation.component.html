@@ -1,12 +1,25 @@
-<nav>
+<nav class="navbar fixed-top navbar-expand-lg bg-dark py-4">
     <div class="container">
-        <ul class="navbar-nav d-flex align-items-center flex-row">
-            <li class="nav-item p-2">
-                <a class="nav-link text-dark" [routerLink]="['home']" routerLinkActive="active">Home</a>
-            </li>
-            <li class="nav-item p-2">
-                <a class="nav-link text-dark" [routerLink]="['login']" routerLinkActive="active">login</a>
-            </li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <!-- Navbar Logo Brand Name -->
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="navbar-brand text-white" href="#">Aelion<strong>Cinema</strong> </a>
+                </li>
+            </ul>
+            <!-- Navbar Search Bar -->
+            <div id="keyword_wrapper" class="col-6 position-relative p-0 clearfix">
+                <app-search></app-search>
+            </div>
+            <!-- NavBar actions Login / Sign Up -->
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link text-white pr-3" [routerLink]="['login']" routerLinkActive="active">LOG IN</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

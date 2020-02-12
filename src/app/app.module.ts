@@ -15,7 +15,7 @@ import { MovieService } from './core/service/movie.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

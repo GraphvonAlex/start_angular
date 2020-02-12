@@ -10,12 +10,12 @@ import { Movie } from 'src/app/core/model/movie';
 })
 export class HomeComponent implements OnInit {
 
-  public title = 'cinema-app';
+  public title = 'cinema';
   public defaultYear = 0 ;
   public years: number[] = [];
   // public countries: Map<string, any> = new Map<string, any>();
 
-  public movies: Movie [] = [];
+  public movies: Movie[] = [];
 
   constructor(
     private movieService: MovieService

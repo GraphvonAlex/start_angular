@@ -1,6 +1,4 @@
 <div class="container">
-
-
     <!-- <div class="row flex-row">
         <div class="col-3" *ngFor="let movie of movies" [hidden]="!((movie.contry.iso == defaultContry) || defaultContry == 'all')">
             <div class="card" *ngIf="(movie.contry.iso == defaultContry) || defaultContry == 'all' ">
@@ -27,7 +25,7 @@
     </select>
     </div> -->
 
-    <div class="row row-eq-height">
+    <div class="row">
         <div class="col-3" *ngFor="let movie of movies" [hidden]="!((movie.year == defaultYear) || defaultYear == 0)">
             <div class="card my-3 movie" *ngIf="(movie.year == defaultYear) || defaultYear == 0">
                 <div class="card-body">

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiRoot: 'http://localhost:8080/api/'
+  apiRoot: 'http://localhost:8080/api/movie/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
