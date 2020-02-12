@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './navigation/search/search.component';
 import { ResultComponent } from './navigation/search/result/result.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,6 +14,7 @@ import { ResultComponent } from './navigation/search/result/result.component';
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
   ],
   exports: [
     NavigationComponent,

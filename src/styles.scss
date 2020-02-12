@@ -5,5 +5,108 @@
     src: url('./assets/fonts/MonotonRegular.ttf') format('truetype');
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body,
+html,
+nav,
+section,
+div,
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+#keyword_wrapper {
+    min-height: 100%;
+    flex-flow: column wrap;
+    position: relative;
+    .search_filter {
+        width: 100%;
+        position: relative;
+    }
+    .search_filter--list {
+        width: 100%;
+        max-height: 320px;
+        list-style: none;
+        color: rgb(105, 105, 105);
+        border-top: none;
+        border-bottom-left-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        /*so things don't jump around*/
+        position: absolute;
+        top: calc(50% + 20px);
+        overflow-y: auto;
+        background: #fff
+    }
+    .avatar {
+        position: relative;
+        display: inline-block;
+    }
+    .avatar-xl {
+        width: 5.125rem;
+        height: 5.125rem;
+    }
+    .avatar-xl .border {
+        border-width: 4px !important;
+    }
+    .avatar-xl .rounded {
+        border-radius: 8px !important;
+    }
+    .avatar-xl .avatar-title {
+        font-size: 30px;
+    }
+    .avatar-xl .avatar-online::before,
+    .avatar-xl .avatar-away::before,
+    .avatar-xl .avatar-dnd::before,
+    .avatar-xl .avatar-offline::before {
+        border-width: 4px;
+    }
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+    .avatar {
+        width: 3rem;
+        height: 3rem;
+    }
+    .avatar-xs {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+    .avatar-sm {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .avatar-lg {
+        width: 4rem;
+        height: 4rem;
+    }
+    .avatar-xl {
+        width: 5.125rem;
+        height: 5.125rem;
+    }
+    .avatar-xxl {
+        width: 5.125rem;
+        height: 5.125rem;
+    }
+    @media (min-width: 768px) {
+        .avatar-xxl {
+            width: 8rem;
+            height: 8rem;
+        }
+    }
+}

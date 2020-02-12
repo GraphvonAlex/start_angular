@@ -2,11 +2,89 @@
 @font-face {
   font-family: 'MonotonRegular';
   src: url("./assets/fonts/MonotonRegular.ttf") format("truetype"); }
-html, body {
+body,
+html,
+nav,
+section,
+div,
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+html,
+body {
   height: 100%; }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#keyword_wrapper {
+  min-height: 100%;
+  flex-flow: column wrap;
+  position: relative; }
+  #keyword_wrapper .search_filter {
+    width: 100%;
+    position: relative; }
+  #keyword_wrapper .search_filter--list {
+    width: 100%;
+    max-height: 320px;
+    list-style: none;
+    color: dimgray;
+    border-top: none;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    /*so things don't jump around*/
+    position: absolute;
+    top: calc(50% + 20px);
+    overflow-y: auto;
+    background: #fff; }
+  #keyword_wrapper .avatar {
+    position: relative;
+    display: inline-block; }
+  #keyword_wrapper .avatar-xl {
+    width: 5.125rem;
+    height: 5.125rem; }
+  #keyword_wrapper .avatar-xl .border {
+    border-width: 4px !important; }
+  #keyword_wrapper .avatar-xl .rounded {
+    border-radius: 8px !important; }
+  #keyword_wrapper .avatar-xl .avatar-title {
+    font-size: 30px; }
+  #keyword_wrapper .avatar-xl .avatar-online::before,
+  #keyword_wrapper .avatar-xl .avatar-away::before,
+  #keyword_wrapper .avatar-xl .avatar-dnd::before,
+  #keyword_wrapper .avatar-xl .avatar-offline::before {
+    border-width: 4px; }
+  #keyword_wrapper .avatar-img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover; }
+  #keyword_wrapper .avatar {
+    width: 3rem;
+    height: 3rem; }
+  #keyword_wrapper .avatar-xs {
+    width: 1.625rem;
+    height: 1.625rem; }
+  #keyword_wrapper .avatar-sm {
+    width: 2.5rem;
+    height: 2.5rem; }
+  #keyword_wrapper .avatar-lg {
+    width: 4rem;
+    height: 4rem; }
+  #keyword_wrapper .avatar-xl {
+    width: 5.125rem;
+    height: 5.125rem; }
+  #keyword_wrapper .avatar-xxl {
+    width: 5.125rem;
+    height: 5.125rem; }
+  @media (min-width: 768px) {
+    #keyword_wrapper .avatar-xxl {
+      width: 8rem;
+      height: 8rem; } }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,10 +1,15 @@
 <div class="keyword_wrapper search_filter position-relative">
-    <form class="search-form">
-        <input class="form-control" type="search" placeholder="Search Movie or Artist" aria-label="Search" maxlenght="75" (search)="recivedMovies()">
+    <!-- <form class="search-form">
+        <input class="form-control" type="search" placeholder="Search Movie" aria-label="Search" maxlenght="75">
     </form>
     <ul class=" search_filter--list ">
         <ul>
             <app-result (moviesEvents)="recivedMovies($event)"></app-result>
         </ul>
-    </ul>
+    </ul> -->
+
+    <form class="search-form" [formGroup]="searchForm">
+        <input (ngModelChange)="reload()" class="form-control" type="search" placeholder="Search Movie" aria-label="Search" formControlName="searchTerm">
+    </form>
+    <app-result [moviesList]="movies"></app-result>
 </div>
