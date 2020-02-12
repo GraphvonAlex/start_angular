@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
         return new Movie().deserialize(movie);
       });
       this.years = Array.from(years).sort();
-      // console.log(`Response : ${JSON.stringify(this.movies)}`);
     });
   }
 

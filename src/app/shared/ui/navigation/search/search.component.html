@@ -1,12 +1,10 @@
 <div class="keyword_wrapper search_filter position-relative">
     <form class="search-form">
-        <input class="form-control" type="search" placeholder="Search Movie or Artist" aria-label="Search" maxlenght="75" (keyup)="onKey($event)">
+        <input class="form-control" type="search" placeholder="Search Movie or Artist" aria-label="Search" maxlenght="75" (search)="recivedMovies()">
     </form>
     <ul class=" search_filter--list ">
-        <!-- results comes here -->
         <ul>
-            <app-result></app-result>
+            <app-result (moviesEvents)="recivedMovies($event)"></app-result>
         </ul>
-
     </ul>
 </div>
