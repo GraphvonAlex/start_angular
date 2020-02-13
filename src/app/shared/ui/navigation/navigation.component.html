@@ -11,7 +11,7 @@
                 </li>
             </ul>
             <!-- Navbar Search Bar -->
-            <div id="keyword_wrapper" class="col-6 position-relative p-0 clearfix">
+            <div id="keyword_wrapper" class="col-6 position-relative p-0 clearfix" *ngIf="router.url != '/login'">
                 <app-search></app-search>
             </div>
             <!-- NavBar actions Login / Sign Up -->

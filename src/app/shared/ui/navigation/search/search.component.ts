@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MovieService } from 'src/app/core/service/movie.service';
 import { Movie } from 'src/app/core/model/movie';
-import { take } from 'rxjs/operators';
+import { take, tap, debounceTime, distinctUntilChanged, map  } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -10,13 +12,14 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  public movies: Movie[] = [];
+  public movies: Observable<Movie[]>;
   public searchForm: FormGroup;
 
   constructor(
+    public router: Router,
     private movieService: MovieService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {}
 
   public get searchTerm(): AbstractControl {
     return this.searchForm.controls.searchTerm;
@@ -32,24 +35,24 @@ export class SearchComponent implements OnInit {
         ])
       ]
     });
+    this.searchTerm.valueChanges
+    .pipe(
+      debounceTime(400),
+      map(() => {
+        this.reload();
+      })
+    ).subscribe();
   }
 
-  public recivedMovies($event: Movie[]): void {
-    this.movies = $event;
-    console.log(`Recived ${JSON.stringify(this.movies)}`);
-  }
+  // public recivedMovies($event: Movie[]): void {
+  //   this.movies = $event;
+  // }
 
-  public reload(): void {
+  private reload(): void {
     if (this.searchTerm.value.trim().length >= 2) {
-      this.movieService.byTitle(this.searchTerm.value.trim())
-        .pipe(
-          take(1)
-        )
-        .subscribe((Response: Movie[]) => {
-          this.movies = Response;
-        });
+      this.movies = this.movieService.byTitle(this.searchTerm.value.trim());
     } else {
-      this.movies = [];
+      this.movies = null;
     }
   }
 }

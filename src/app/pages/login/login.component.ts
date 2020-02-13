@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/core/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +9,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public loginForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) { }
+
+  public get login(): AbstractControl {
+    return this.loginForm.controls.login;
+  }
+
+  public get password(): AbstractControl {
+    return this.loginForm.controls.password;
+  }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      login: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        ])
+      ],
+      password: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(8)])
+      ]
+    });
+  }
+
+  public doLogin(): void {
+    if (this.userService.autentificate(this.loginForm.value)) {
+      // navigate to home
+      this.router.navigate(['home']);
+    } else {
+      this.loginForm.reset();
+    }
+
+    console.log('click works');
   }
 
 }

@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-lg-4 d-flex justify-content-center align-items-center bg-white h-100">
+            <div class="content">
+                <h3 class="text-center p-b-20 fw-400">Login</h3>
+                <form class="needs-validation" action="#" [formGroup]="loginForm">
+                    <div class="form-row">
+                        <div class="form-group floating-label col-md-12">
+                            <label>Email</label>
+                            <input type="email" required class="form-control" placeholder="Email" formControlName="login">
+                            <span class="text-danger" *ngIf="login.touched && login.invalid">
+                                Your login is incorect
+                            </span>
+                        </div>
+                        <div class="form-group floating-label col-md-12">
+                            <label>Password</label>
+                            <input type="password" required class="form-control " formControlName="password">
+                            <span class="text-danger" *ngIf="password.touched && password.invalid">
+                                Please enter a walid password
+                            </span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" [disabled]="loginForm.invalid" (click)="doLogin()">Login</button>
+
+                </form>
+                <p class="text-right p-t-10">
+                    <a href="#!" class="text-underline">Forgot Password?</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('assets/movie_posters/Featured Image Header.png');"></div>
+    </div>
+</div>

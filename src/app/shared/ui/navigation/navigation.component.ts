@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from './search/search.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +10,9 @@ import { SearchComponent } from './search/search.component';
 
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
   }

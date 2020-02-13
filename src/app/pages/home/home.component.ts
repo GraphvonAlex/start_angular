@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/core/service/movie.service';
 import { take } from 'rxjs/operators';
 import { Movie } from 'src/app/core/model/movie';
+import { Observable, fromEvent, BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,34 +14,20 @@ export class HomeComponent implements OnInit {
   public title = 'cinema';
   public defaultYear = 0;
   public years: number[] = [];
-  // public countries: Map<string, any> = new Map<string, any>();
-
-  public movies: Movie[] = [];
+  public yearsSub: Subscription;
+  public movies: Observable<Movie[]>;
 
   constructor(
     private movieService: MovieService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    const years: Set<number> = new Set<number>();
-
-    this.movieService.all()
-      .pipe(
-        take(1)
-      )
-      .subscribe((Response: any[]) => {
-        this.movies = Response;
-        this.movies.map((movie: Movie) => {
-          years.add(movie.year);
-        });
-        this.years = Array.from(years).sort();
-      });
+    // const mYears: Set<number> = new Set<number>();
+    this.movies = this.movieService.all();
+    this.yearsSub = this.movieService.years$
+    // tslint:disable-next-line: variable-name
+    .subscribe((_years) => {
+      this.years = _years;
+    });
   }
-
-  // public toggleContry(): void {
-  //   this.defaultContry = (this.defaultContry === 'us') ? this.defaultContry = 'it' : this.defaultContry = 'us';
-  //   this.movies.forEach((movie: any) => {
-  //     movie.show = movie.contry.iso === this.defaultContry;
-  //   });
-  // }
 }

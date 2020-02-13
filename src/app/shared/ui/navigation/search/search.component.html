@@ -1,15 +1,8 @@
-<div class="keyword_wrapper search_filter position-relative">
-    <!-- <form class="search-form">
-        <input class="form-control" type="search" placeholder="Search Movie" aria-label="Search" maxlenght="75">
-    </form>
-    <ul class=" search_filter--list ">
-        <ul>
-            <app-result (moviesEvents)="recivedMovies($event)"></app-result>
-        </ul>
-    </ul> -->
 
+<div class="keyword_wrapper search_filter position-relative" *ngIf="router.url != '/'">
     <form class="search-form" [formGroup]="searchForm">
-        <input (ngModelChange)="reload()" class="form-control" type="search" placeholder="Search Movie" aria-label="Search" formControlName="searchTerm">
+        <input class="form-control" type="search" placeholder="Search Movie" aria-label="Search" formControlName="searchTerm">
+        {{router.url}}
     </form>
     <app-result [DBMovies]="movies"></app-result>
 </div>
