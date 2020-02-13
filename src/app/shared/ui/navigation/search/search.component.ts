@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     private formBuilder: FormBuilder
-    ) { }
+  ) { }
 
   public get searchTerm(): AbstractControl {
     return this.searchForm.controls.searchTerm;
@@ -41,15 +41,12 @@ export class SearchComponent implements OnInit {
 
   public reload(): void {
     if (this.searchTerm.value.trim().length >= 2) {
-      const movies: Movie[] = [];
       this.movieService.byTitle(this.searchTerm.value.trim())
         .pipe(
           take(1)
         )
         .subscribe((Response: Movie[]) => {
-          this.movies = Response.map((movie: any) => {
-            return new Movie().deserialize(movie);
-          });
+          this.movies = Response;
         });
     } else {
       this.movies = [];

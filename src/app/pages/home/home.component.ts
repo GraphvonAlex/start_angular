@@ -11,7 +11,7 @@ import { Movie } from 'src/app/core/model/movie';
 export class HomeComponent implements OnInit {
 
   public title = 'cinema';
-  public defaultYear = 0 ;
+  public defaultYear = 0;
   public years: number[] = [];
   // public countries: Map<string, any> = new Map<string, any>();
 
@@ -19,23 +19,22 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private movieService: MovieService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const years: Set<number> = new Set<number>();
 
     this.movieService.all()
-    .pipe(
-      take(1)
-    )
-    .subscribe((Response: any[]) => {
-      console.log(`Response : ${JSON.stringify(Response)}`);
-      this.movies = Response.map((movie: Movie) => {
-        years.add(movie.year);
-        return new Movie().deserialize(movie);
+      .pipe(
+        take(1)
+      )
+      .subscribe((Response: any[]) => {
+        this.movies = Response;
+        this.movies.map((movie: Movie) => {
+          years.add(movie.year);
+        });
+        this.years = Array.from(years).sort();
       });
-      this.years = Array.from(years).sort();
-    });
   }
 
   // public toggleContry(): void {
