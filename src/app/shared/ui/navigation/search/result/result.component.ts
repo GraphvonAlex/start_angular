@@ -14,7 +14,7 @@ export class ResultComponent implements OnInit {
   public searchForm: FormGroup;
 
   @Input()
-  moviesList: Movie[];
+  DBMovies: Movie[];
 
   constructor(
     private movieService: MovieService,
