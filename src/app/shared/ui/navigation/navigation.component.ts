@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from './search/search.component';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/service/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
 
   constructor(
-    public router: Router
+    public router: Router,
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {

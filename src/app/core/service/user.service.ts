@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   // tslint:disable-next-line: variable-name
   private _registeredUsers: any[];
-
+  public isLogedIn: boolean = false;
   constructor(
   ) {
     this._registeredUsers = new Array<any>();
@@ -14,7 +14,7 @@ export class UserService {
       login: 'alex@gmail.com',
       password: 'password'
     });
-   }
+  }
 
   public autentificate(user: any): boolean {
     const regUser = this._registeredUsers.find(
@@ -25,6 +25,7 @@ export class UserService {
         'user',
         JSON.stringify(user)
       );
+      this.isLogedIn = true;
       return true;
     } else {
       return false;
