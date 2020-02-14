@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,14 +7,21 @@ import { Injectable } from '@angular/core';
 export class UserService {
   // tslint:disable-next-line: variable-name
   private _registeredUsers: any[];
-  public isLogedIn: boolean = false;
-  constructor(
-  ) {
+  public isAuthenticated = false;
+
+  constructor() {
     this._registeredUsers = new Array<any>();
     this._registeredUsers.push({
       login: 'alex@gmail.com',
-      password: 'password'
+      password: 'password',
+      firstName: 'Aleksejs',
+      lastName: 'Pridannikovs'
     });
+
+    const userLogedIn: string = localStorage.getItem('user');
+    if (userLogedIn) {
+      this.isAuthenticated = true;
+    }
   }
 
   public autentificate(user: any): boolean {
@@ -25,10 +33,18 @@ export class UserService {
         'user',
         JSON.stringify(user)
       );
-      this.isLogedIn = true;
+      this.isAuthenticated = true;
       return true;
     } else {
       return false;
     }
+  }
+
+  /**
+   * logout
+   */
+  public logout() {
+    localStorage.removeItem('user');
+    this.isAuthenticated = false;
   }
 }

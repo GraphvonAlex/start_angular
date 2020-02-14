@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-expand-lg bg-dark py-4">
-    <div class="container">
+    <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -16,27 +16,20 @@
             </div>
             <!-- NavBar actions Login / Sign Up -->
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <div class="avatar avatar-online">
-                    <img src="https://atmos.atomui.com/default/assets/img/users/user-1.jpg" alt="..." class="avatar-img rounded-circle">
-                </div>
-                <li class="nav-item active" *ngIf="!userService.isLogedIn">
+                <li class="nav-item active" *ngIf="!userService.isAuthenticated">
                     <a class="nav-link text-white pr-3" [routerLink]="['login']" routerLinkActive="active">Login</a>
                 </li>
-                <!-- <li class="nav-item active" *ngIf="userService.isLogedIn">
-                    <a class="nav-link text-white pr-3" [routerLink]="['login']" routerLinkActive="active">logout</a>
-                </li> -->
-                <li class="nav-item dropdown " *ngIf="userService.isLogedIn">
+                <li class="nav-item dropdown" *ngIf="userService.isAuthenticated">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar avatar-online">
-                            <img src="https://atmos.atomui.com/default/assets/img/users/user-1.jpg" alt="..." class="avatar-img rounded-circle">
+                            <img src="https://atmos.atomui.com/default/assets/img/users/user-4.jpg" alt="..." class="avatar-img rounded-circle">
                         </div>
                     </a>
                     <div class="dropdown-menu  dropdown-menu-right">
-                        <a class="dropdown-item" href="#">  Add Account</a>
+                        <a class="dropdown-item" href="#">  My Account</a>
                         <a class="dropdown-item" href="#">  Reset Password</a>
-                        <a class="dropdown-item" href="#">  Help </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"> Logout</a>
+                        <a class="dropdown-item" (click)="doLogout()"> Logout</a>
                     </div>
                 </li>
             </ul>
