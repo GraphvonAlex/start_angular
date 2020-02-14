@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core/service/user.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar,
   ) { }
 
   public get login(): AbstractControl {
@@ -46,10 +48,16 @@ export class LoginComponent implements OnInit {
       // navigate to home
       this.router.navigate(['home']);
     } else {
+      this.snackBar.open(
+        'Sorry, your indentification failed',
+        '',
+        {
+          duration: 2500,
+          verticalPosition: 'bottom',
+        }
+      );
       this.loginForm.reset();
     }
-
-    console.log('click works');
   }
 
 }
