@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './core/service/movie.service';
+import { MovieComponent } from './pages/movie/movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    MovieComponent,
   ],
   imports: [
     BrowserModule,

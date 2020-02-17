@@ -9,28 +9,30 @@
             </div>
         </div> -->
         <div id="movie" class="col-md-4" *ngFor="let movie of movies | async" [hidden]="!((movie.year == defaultYear) || defaultYear == 0)">
-            <div class="card my-3" *ngIf="(movie.year == defaultYear) || defaultYear == 0">
-                <div class="card_image position-relative">
-                    <img class="card-img-top img-fluid" alt="Alita: Battle Angel Poster" title="Alita: Battle Angel Poster" src="assets/movie_posters/Bitmap.png">
-                    <div class="img_year position-absolute">
-                        <span class="text-white movie_year" movieYear>{{movie.year}}</span>
-                    </div>
-                </div>
-                <div class="row card-body justify-content-center align-items-center ">
-                    <div class="col-9">
-                        <div class="title">
-                            <h3 class="card-title p-0 m-0 text-capitalize" movieTitle>{{movie.title }}</h3>
-                            <span class="text-muted">Action, Adventure</span>
+            <a [routerLink]="['../','movie', movie.idMovie]"> {{movie.title}}
+                <div class="card my-3" *ngIf="(movie.year == defaultYear) || defaultYear == 0">
+                    <div class="card_image position-relative">
+                        <img class="card-img-top img-fluid" alt="Alita: Battle Angel Poster"
+                            title="Alita: Battle Angel Poster" src="assets/movie_posters/Bitmap.png">
+                        <div class="img_year position-absolute">
+                            <span class="text-white movie_year" movieYear>{{movie.year}}</span>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <span class="movie_rating text-danger">4.2</span>
+                    <div class="row card-body justify-content-center align-items-center ">
+                        <div class="col-9">
+                            <div class="title">
+                                <h3 class="card-title p-0 m-0 text-capitalize" movieTitle>{{movie.title }}</h3>
+                                <span class="text-muted">Action, Adventure</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <span class="movie_rating text-danger">4.2</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
-
     <mat-form-field class="py-5">
         <mat-label>Select By Year</mat-label>
         <mat-select aria-setsize="1" [(ngModel)]="defaultYear">

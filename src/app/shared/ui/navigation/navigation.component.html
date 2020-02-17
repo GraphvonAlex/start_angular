@@ -16,10 +16,10 @@
             </div>
             <!-- NavBar actions Login / Sign Up -->
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item active" *ngIf="!userService.isAuthenticated">
+                <li class="nav-item active" *ngIf="!user">
                     <a class="nav-link text-white pr-3" [routerLink]="['login']" routerLinkActive="active">Login</a>
                 </li>
-                <li class="nav-item dropdown" *ngIf="userService.isAuthenticated">
+                <li class="nav-item dropdown" *ngIf="user">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar avatar-online">
                             <img src="https://atmos.atomui.com/default/assets/img/users/user-4.jpg" alt="..." class="avatar-img rounded-circle">

@@ -50,4 +50,21 @@ export class MovieService {
       })
     );
   }
+
+  public bysingleMovie(idMovie: number): Observable<any> {
+    const apiRoute = `${environment.apiRoot}${idMovie}`;
+    return this.httpClient.get<any>(
+      apiRoute
+    ).pipe(
+      take(1),
+      map((Response) => {
+        return Response;
+        // .map((item) => {
+        //   this._years.add(item.year);
+        //   this.years$.next(Array.from(this._years).sort());
+        //   return new Movie().deserialize(item);
+        // });
+      })
+    );
+  }
 }

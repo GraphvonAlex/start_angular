@@ -3,6 +3,7 @@ import { SearchComponent } from './search/search.component';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/service/user.service';
 import { Observable } from 'rxjs';
+import { UserInterface } from 'src/app/core/model/user-interface';
 
 @Component({
   selector: 'app-navigation',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 
 export class NavigationComponent implements OnInit {
-  isLoggedIn: Observable<boolean>;
+  public user: UserInterface;
 
   constructor(
     public router: Router,
@@ -19,6 +20,9 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.userSubject$.subscribe((user: UserInterface) => {
+      this.user = user;
+    });
   }
 
   public doLogout() {
