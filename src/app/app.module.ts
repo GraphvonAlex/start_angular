@@ -11,6 +11,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './core/service/movie.service';
 import { MovieComponent } from './pages/movie/movie.component';
+import { EditComponent } from './pages/movie/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MovieComponent } from './pages/movie/movie.component';
     HomeComponent,
     LoginComponent,
     MovieComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

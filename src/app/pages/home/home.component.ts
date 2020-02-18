@@ -3,6 +3,8 @@ import { MovieService } from 'src/app/core/service/movie.service';
 import { take } from 'rxjs/operators';
 import { Movie } from 'src/app/core/model/movie';
 import { Observable, fromEvent, BehaviorSubject, Subscription } from 'rxjs';
+import { UserService } from 'src/app/core/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,10 @@ export class HomeComponent implements OnInit {
   public movies: Observable<Movie[]>;
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private router: Router,
+    private userService: UserService
+
   ) {}
 
   ngOnInit(): void {
@@ -29,5 +34,13 @@ export class HomeComponent implements OnInit {
     .subscribe((_years) => {
       this.years = _years;
     });
+  }
+
+  public onClick(id: number) {
+    if (this.userService.user) {
+      this.router.navigateByUrl('movie/' + id);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 }

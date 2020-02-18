@@ -1,25 +1,43 @@
-<p>
-    <br> . M
-    <br> . O
-    <br> . V
-    <br> . I
-    <br> . E
-    <br> . -
-    <br> . W
-    <br> . O
-    <br> . R
-    <br> . K
-    <br> . S
-    <br> . -
-    <br> . T
-    <br> . E
-    <br> . S
-    <br> . T
-    <br> . -
-    <br> . A
-    <br> . G
-    <br> . A
-    <br> . I
-    <br> . N
-</p>
-{{movie | json}}
+<div class="movie_header_slider movie_resernt vh-75 w-100 position-relative bg-img">
+    <div class="movie_gradient_overlay position-absolute w-100 h-100"></div>
+    <div class="movies_contents">
+        <img class="img-fluid vh-75 w-100" src="assets/movie_posters/Featured Image Header.png" alt="" style="object-fit: cover;">
+        <div class="position-absolute" style="bottom: 0; right: 0; left: 0;">
+            <div class="container">
+                <div class="movie_content d-flex align-items-center">
+                    <div class="movie_info py-3">
+                        <div class="title">
+                            <h1 class="text-white text-uppercase m-0">{{movie.title}}</h1>
+                            <ul class="d-flex p-0 m-0 roles">
+                                <li><a class="text-secondary text-decoration-none" disabled>{{movie.year}}</a></li>
+                                <li><a class="text-secondary pr-3 text-decoration-none" disabled>|</a></li>
+                                <li *ngFor="let genres of movie.genres"><a class="pr-3 text-decoration-none" href="!#">{{genres}}</a></li>
+                                <li><a class="text-secondary pr-3 text-decoration-none" disabled>|</a></li>
+                                <li><a class="text-secondary text-decoration-none" disabled>{{movie.duration}} min</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="movie_rating ml-auto">
+                        <span class="text-white"> <b>Rating</b> <small class="text-secondary"> based on 678.590 reviews</small></span>
+                        <div class="stars d-flex align-items-center">
+                            <i class="las la-star color-base-red"></i>
+                            <i class="las la-star color-base-red"></i>
+                            <i class="las la-star color-base-red"></i>
+                            <i class="las la-star color-base-red"></i>
+                            <i class="las la-star-half color-base-red"></i>
+                            <span> <small>4.9</small> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+          Launch demo modal
+        </button>
+    </div>
+</div>
+<app-edit [movieIn]="movie"></app-edit>
