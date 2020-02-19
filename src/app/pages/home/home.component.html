@@ -14,19 +14,19 @@
                 <div class="card_image position-relative">
                     <img class="card-img-top img-fluid" alt="Alita: Battle Angel Poster" title="Alita: Battle Angel Poster" src="assets/movie_posters/Bitmap.png">
                     <div class="img_year position-absolute">
-                        <span class="text-white movie_year" movieYear>{{movie.year}}</span>
+                        <span class="text-white movie_year">{{movie.year}}</span>
                     </div>
                 </div>
                 <div class="row card-body justify-content-center align-items-center ">
                     <div class="col-9">
                         <div class="title">
-                            <h3 class="card-title p-0 m-0 text-capitalize" movieTitle>{{movie.title }}</h3>
+                            <h3 class="card-title p-0 m-0 text-capitalize">{{movie.title }}</h3>
                             <span class="text-muted">Action, Adventure</span>
                         </div>
                     </div>
                     <div class="col-3">
                         <!-- <span class="movie_rating text-danger">4.2</span> -->
-                        <button class="btn btn-defaulf" (click)="onClick(movie.idMovie)">See</button>
+                        <button class="btn btn-default" (click)="onClick(movie.idMovie)">See</button>
                     </div>
                 </div>
             </div>

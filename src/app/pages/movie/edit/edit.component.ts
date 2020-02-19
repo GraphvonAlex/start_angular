@@ -54,44 +54,50 @@ export class EditComponent implements OnInit {
     });
   }
 
-  public doDelete(){
-
+  public doDelete() {
+    this.movieService.deleteMovie(this.movie)
+    .pipe(
+      take(1)
+    ).subscribe((Response: Observable<any>) => {
+      return Response;
+    });
   }
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe((paramMap: any) => {
-      console.log(`params :  ${paramMap.params.id}`);
-      this.movieService.bysingleMovie(paramMap.params.id).subscribe((movie: any) => {
-        this.movie = this.movieIn;
-        this.editForm = this.formBuilder.group({
-          title: [
-            this.movie.title, // default value for the control
-            Validators.compose([
-              Validators.required
-            ])
-          ],
-          synopsis: [
-            this.movie.synopsis,
-            Validators.compose([
-              Validators.required
-            ])
-          ],
-          year: [
-            this.movie.year,
-            Validators.compose([
-              Validators.required
-            ])
-          ],
-          duration: [
-            this.movie.duration,
-            Validators.compose([
-              Validators.required
-            ])
-          ]
-        });
+    this.router.data.subscribe((data: {movie: any}) => {
+      this.movie = data.movie;
+      this.editForm = this.formBuilder.group({
+        title: [
+          this.movie.title, // default value for the control
+          Validators.compose([
+            Validators.required
+          ])
+        ],
+        synopsis: [
+          this.movie.synopsis,
+          Validators.compose([
+            Validators.required
+          ])
+        ],
+        year: [
+          this.movie.year,
+          Validators.compose([
+            Validators.required
+          ])
+        ],
+        duration: [
+          this.movie.duration,
+          Validators.compose([
+            Validators.required
+          ])
+        ]
       });
+
+      this.year.setValue(this.movie.year);
+      this.title.setValue(this.movie.title)
+      this.duration.setValue(this.movie.duration);
+      this.synopsis.setValue(this.movie.synopsis);
+
     });
-
-
   }
 }

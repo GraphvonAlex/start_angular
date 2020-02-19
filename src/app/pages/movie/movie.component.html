@@ -1,5 +1,4 @@
 <div class="movie_header_slider movie_resernt vh-75 w-100 position-relative bg-img">
-    <div class="movie_gradient_overlay position-absolute w-100 h-100"></div>
     <div class="movies_contents">
         <img class="img-fluid vh-75 w-100" src="assets/movie_posters/Featured Image Header.png" alt="" style="object-fit: cover;">
         <div class="position-absolute" style="bottom: 0; right: 0; left: 0;">
@@ -11,14 +10,16 @@
                             <ul class="d-flex p-0 m-0 roles">
                                 <li><a class="text-secondary text-decoration-none" disabled>{{movie.year}}</a></li>
                                 <li><a class="text-secondary pr-3 text-decoration-none" disabled>|</a></li>
-                                <li *ngFor="let genres of movie.genres"><a class="pr-3 text-decoration-none" href="!#">{{genres}}</a></li>
+                                <li *ngFor="let genres of movie.genres">
+                                  <a class="pr-3 text-decoration-none" disabled>{{genres}}</a>
+                                </li>
                                 <li><a class="text-secondary pr-3 text-decoration-none" disabled>|</a></li>
                                 <li><a class="text-secondary text-decoration-none" disabled>{{movie.duration}} min</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="movie_rating ml-auto">
-                        <span class="text-white"> <b>Rating</b> <small class="text-secondary"> based on 678.590 reviews</small></span>
+                        <span class="text-white"> <b>Rating</b> <small class="text-secondary">based on 678.590 reviews</small></span>
                         <div class="stars d-flex align-items-center">
                             <i class="las la-star color-base-red"></i>
                             <i class="las la-star color-base-red"></i>
@@ -35,9 +36,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-          Launch demo modal
-        </button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button>
     </div>
 </div>
 <app-edit [movieIn]="movie"></app-edit>

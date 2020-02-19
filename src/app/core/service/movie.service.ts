@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
 import { Movie } from './../model/movie';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { HttpClient, HttpResponse, HttpRequest } from '@angular/common/http';
+import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
+import { take, map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -54,16 +54,23 @@ export class MovieService {
   public bysingleMovie(idMovie: number): Observable<any> {
     const apiRoute = `${environment.apiRoot}${idMovie}`;
     return this.httpClient.get<any>(
-      apiRoute
+      apiRoute,
+      {
+        observe: 'response'
+      }
     ).pipe(
       take(1),
-      map((Response) => {
-        return Response;
+      map((response) => {
+        return response.body;
         // .map((item) => {
         //   this._years.add(item.year);
         //   this.years$.next(Array.from(this._years).sort());
         //   return new Movie().deserialize(item);
         // });
+      }),
+      catchError((error: any) => {
+        console.log(`Error message :  ${JSON.stringify(error)}`);
+        return throwError(error.status);
       })
     );
   }
@@ -74,11 +81,26 @@ export class MovieService {
       apiRoute,
       movie,
       {
-        observe: 'response'
+        observe: 'response',
       }
     ).pipe(
       take(1),
       map((Response: HttpResponse<any>) => {
+        return Response;
+      })
+    );
+  }
+
+  public deleteMovie(movie: any): Observable<any> {
+    const apiRoute = `${environment.apiRoot}deleteMovie/${movie.idMovie}`;
+    return this.httpClient.delete(
+      apiRoute,
+      {
+        observe: 'response'
+      }
+    ).pipe(
+      take(1),
+      map((Response) => {
         return Response;
       })
     );
