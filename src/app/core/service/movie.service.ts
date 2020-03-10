@@ -17,16 +17,19 @@ export class MovieService {
     private httpClient: HttpClient,
   ) { }
 
+  /**
+   * Get All movies from database
+   */
   public all(): Observable<Movie[]> {
     this._years = new Set<number>();
-    const apiRoute = `${environment.apiRoot}`;
+    const apiRoute = `${environment.movieRoot}`;
     return this.httpClient.get<Movie[]>(
       apiRoute
     ).pipe(
       take(1),
       map((Response) => {
         return Response.map((item) => {
-          this._years.add(item.year);
+          this._years.add(item.releaseDate);
           this.years$.next(Array.from(this._years).sort());
           return new Movie().deserialize(item);
         });
@@ -34,25 +37,12 @@ export class MovieService {
     );
   }
 
-  public byTitle(title: string): Observable<Movie[]> {
-    this._years = new Set<number>();
-    const apiRoute = `${environment.apiRoot}byTitleP?t=${title}`;
-    return this.httpClient.get<Movie[]>(
-      apiRoute
-    ).pipe(
-      take(1),
-      map((Response) => {
-        return Response.map((item) => {
-          this._years.add(item.year);
-          this.years$.next(Array.from(this._years).sort());
-          return new Movie().deserialize(item);
-        });
-      })
-    );
-  }
-
-  public bysingleMovie(idMovie: number): Observable<any> {
-    const apiRoute = `${environment.apiRoot}${idMovie}`;
+  /**
+   * Find single movie by movie id
+   * @param id
+   */
+  public bysingleMovie(id: number): Observable<any> {
+    const apiRoute = `${environment.movieRoot}${id}`;
     return this.httpClient.get<any>(
       apiRoute,
       {
@@ -62,11 +52,6 @@ export class MovieService {
       take(1),
       map((response) => {
         return response.body;
-        // .map((item) => {
-        //   this._years.add(item.year);
-        //   this.years$.next(Array.from(this._years).sort());
-        //   return new Movie().deserialize(item);
-        // });
       }),
       catchError((error: any) => {
         console.log(`Error message :  ${JSON.stringify(error)}`);
@@ -75,8 +60,12 @@ export class MovieService {
     );
   }
 
+  /**
+   * Update Selected Movie
+   * @param movie
+   */
   public updateMovie(movie: any): Observable<HttpResponse<any>> {
-    const apiRoute = `${environment.apiRoot}/modify`;
+    const apiRoute = `${environment.movieRoot}/${movie.id}`;
     return this.httpClient.put(
       apiRoute,
       movie,
@@ -91,8 +80,12 @@ export class MovieService {
     );
   }
 
+  /**
+   * Delete selected movie
+   * @param movie
+   */
   public deleteMovie(movie: any): Observable<any> {
-    const apiRoute = `${environment.apiRoot}deleteMovie/${movie.idMovie}`;
+    const apiRoute = `${environment.movieRoot}/${movie.id}`;
     return this.httpClient.delete(
       apiRoute,
       {

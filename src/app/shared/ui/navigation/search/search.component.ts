@@ -50,7 +50,7 @@ export class SearchComponent implements OnInit {
 
   private reload(): void {
     if (this.searchTerm.value.trim().length >= 2) {
-      this.movies = this.movieService.byTitle(this.searchTerm.value.trim());
+      // this.movies = this.movieService.byTitle(this.searchTerm.value.trim());
     } else {
       this.movies = null;
     }

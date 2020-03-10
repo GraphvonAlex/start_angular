@@ -1,15 +1,15 @@
 import { Resolve, Router} from '@angular/router';
 import { Injectable } from '@angular/core';
-import { MovieService } from '../service/movie.service';
 import { take, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { PersonService } from '../service/person.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovieResolver implements Resolve<any> {
+export class PersonResolver implements Resolve<any> {
   public constructor(
-    private movieService: MovieService,
+    private personService: PersonService,
     public router: Router
   ) {}
 
@@ -21,7 +21,7 @@ export class MovieResolver implements Resolve<any> {
     const id: number = parseInt(route.paramMap.get('id'));
     console.log(`Hello resolver : ${id}`);
 
-    return  this.movieService.bysingleMovie(id)
+    return  this.personService.single(id)
     .pipe(
       take(1),
       catchError((error: any, couth: Observable<any>): Observable<any> => {

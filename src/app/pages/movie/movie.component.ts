@@ -9,7 +9,7 @@ import { EditComponent } from './edit/edit.component';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
-  public movie: any;
+  public singleMovie: any;
 
   constructor(
     public router: ActivatedRoute,
@@ -20,7 +20,7 @@ export class MovieComponent implements OnInit {
     this.router.paramMap.subscribe((paramMap: any) => {
       console.log(`params :  ${paramMap.params.id}`);
       this.movieService.bysingleMovie(paramMap.params.id).subscribe((movie: any) => {
-        this.movie = movie;
+        this.singleMovie = movie;
       });
     });
   }

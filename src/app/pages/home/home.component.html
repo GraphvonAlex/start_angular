@@ -8,28 +8,31 @@
                 </div>
             </div>
         </div> -->
-        <div id="movie" class="col-md-4" *ngFor="let movie of movies | async" [hidden]="!((movie.year == defaultYear) || defaultYear == 0)">
+        <div id="movie" class="col-md-4" *ngFor="let movie of movies | async" [hidden]="!((movie.releaseDate == defaultYear) || defaultYear == 0)">
             <!-- <a [routerLink]="['../','movie', movie.idMovie]" (click)="mostBeLogedIn(movie.idMovie)"> -->
-            <div class="card my-3" *ngIf="(movie.year == defaultYear) || defaultYear == 0">
+            <div class="card my-3" *ngIf="(movie.releaseDate == defaultYear) || defaultYear == 0">
                 <div class="card_image position-relative">
                     <img class="card-img-top img-fluid" alt="Alita: Battle Angel Poster" title="Alita: Battle Angel Poster" src="assets/movie_posters/Bitmap.png">
                     <div class="img_year position-absolute">
-                        <span class="text-white movie_year">{{movie.year}}</span>
+                        <span class="text-white movie_year">{{ movie.releaseDate}}</span>
                     </div>
                 </div>
                 <div class="row card-body justify-content-center align-items-center ">
                     <div class="col-9">
                         <div class="title">
                             <h3 class="card-title p-0 m-0 text-capitalize">{{movie.title }}</h3>
-                            <span class="text-muted">Action, Adventure</span>
+                            <span class="text-muted" *ngFor="let gendre of movie.movieGendres">{{ gendre.name }}</span>
                         </div>
                     </div>
                     <div class="col-3">
                         <!-- <span class="movie_rating text-danger">4.2</span> -->
-                        <button class="btn btn-default" (click)="onClick(movie.idMovie)">See</button>
+                        <button class="btn btn-default" (click)="onClick(movie.id)">See</button>
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="peron" *ngFor="let item of persons">
+            <h3>Person is here</h3>
         </div>
     </div>
     <mat-form-field class="py-5">

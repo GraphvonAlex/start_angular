@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from './core/service/movie.service';
 import { MovieComponent } from './pages/movie/movie.component';
 import { EditComponent } from './pages/movie/edit/edit.component';
+import { PersonComponent } from './pages/person/person.component';
+import { PersonService } from './core/service/person.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { EditComponent } from './pages/movie/edit/edit.component';
     LoginComponent,
     MovieComponent,
     EditComponent,
+    PersonComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { EditComponent } from './pages/movie/edit/edit.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [MovieService],
+  providers: [MovieService, PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

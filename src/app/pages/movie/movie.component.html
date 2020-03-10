@@ -6,20 +6,20 @@
                 <div class="movie_content d-flex align-items-center">
                     <div class="movie_info py-3">
                         <div class="title">
-                            <h1 class="text-white text-uppercase m-0">{{movie.title}}</h1>
+                            <h1 class="text-white text-uppercase m-0">{{singleMovie.title}}</h1>
                             <ul class="d-flex p-0 m-0 roles">
-                                <li><a class="text-secondary text-decoration-none" disabled>{{movie.year}}</a></li>
+                                <li><a class="text-secondary text-decoration-none" disabled>{{singleMovie.releaseDate}}</a></li>
                                 <li><a class="text-secondary pr-3 text-decoration-none" disabled>|</a></li>
-                                <li *ngFor="let genres of movie.genres">
-                                  <a class="pr-3 text-decoration-none" disabled>{{genres}}</a>
+                                <li *ngFor="let genres of singleMovie.movieGendres">
+                                    <a class="pr-3 text-decoration-none" disabled>{{ genres.name }}</a>
                                 </li>
                                 <li><a class="text-secondary pr-3 text-decoration-none" disabled>|</a></li>
-                                <li><a class="text-secondary text-decoration-none" disabled>{{movie.duration}} min</a></li>
+                                <li><a class="text-secondary text-decoration-none" disabled>{{singleMovie.runtime}} min</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="movie_rating ml-auto">
-                        <span class="text-white"> <b>Rating</b> <small class="text-secondary">based on 678.590 reviews</small></span>
+                        <span class="text-white"> <b>{{ singleMovie.raitingAverage}}</b> <small class="text-secondary"> based on {{ singleMovie.nbrRaitings }} reviews</small></span>
                         <div class="stars d-flex align-items-center">
                             <i class="las la-star color-base-red"></i>
                             <i class="las la-star color-base-red"></i>
@@ -39,4 +39,4 @@
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button>
     </div>
 </div>
-<app-edit [movieIn]="movie"></app-edit>
+<app-edit [movieIn]="singleMovie"></app-edit>

@@ -13,6 +13,8 @@ import { HttpResponse } from '@angular/common/http';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+  public movie: any;
+  public editForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,30 +26,29 @@ export class EditComponent implements OnInit {
     return this.editForm.controls.title;
   }
 
-  public get synopsis(): AbstractControl {
-    return this.editForm.controls.synopsis;
+  public get resume(): AbstractControl {
+    return this.editForm.controls.resume;
   }
 
-  public get year(): AbstractControl {
-    return this.editForm.controls.year;
+  public get releaseDate(): AbstractControl {
+    return this.editForm.controls.releaseDate;
   }
 
-  public get duration(): AbstractControl {
-    return this.editForm.controls.duration;
+  public get runtime(): AbstractControl {
+    return this.editForm.controls.runtime;
   }
-  public movie: any;
-  public editForm: FormGroup;
 
   @Input()
   movieIn: Movie;
 
   public doUpdate() {
     this.movie.title = this.title.value;
-    this.movie.synopsis = this.synopsis.value;
-    this.movie.year = this.year.value;
-    this.movie.duration = this.duration.value;
+    this.movie.resume = this.resume.value;
+    this.movie.releaseDate = this.releaseDate.value;
+    this.movie.runtime = this.runtime.value;
 
-    this.movieService.updateMovie(this.movie).pipe(
+    this.movieService.updateMovie(this.movie)
+    .pipe(
       take(1)
     ).subscribe((Response: HttpResponse<any>) => {
       console.log('update is done');
@@ -66,6 +67,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.router.data.subscribe((data: {movie: any}) => {
       this.movie = data.movie;
+
       this.editForm = this.formBuilder.group({
         title: [
           this.movie.title, // default value for the control
@@ -73,30 +75,30 @@ export class EditComponent implements OnInit {
             Validators.required
           ])
         ],
-        synopsis: [
-          this.movie.synopsis,
+        resume: [
+          this.movie.resume,
           Validators.compose([
             Validators.required
           ])
         ],
-        year: [
-          this.movie.year,
+        releaseDate: [
+          this.movie.releaseDate,
           Validators.compose([
             Validators.required
           ])
         ],
-        duration: [
-          this.movie.duration,
+        runtime: [
+          this.movie.runtime,
           Validators.compose([
             Validators.required
           ])
         ]
       });
 
-      this.year.setValue(this.movie.year);
-      this.title.setValue(this.movie.title)
-      this.duration.setValue(this.movie.duration);
-      this.synopsis.setValue(this.movie.synopsis);
+      this.releaseDate.setValue(this.movie.releaseDate);
+      this.title.setValue(this.movie.title);
+      this.runtime.setValue(this.movie.runtime);
+      this.resume.setValue(this.movie.resume);
 
     });
   }

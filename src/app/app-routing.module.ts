@@ -5,6 +5,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginGuard } from './core/guards/login.guard';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MovieResolver } from './core/resolver/movie-resolver';
+import { PersonComponent } from './pages/person/person.component';
+import { PersonResolver } from './core/resolver/person-resolver';
 
 
 const routes: Routes = [
@@ -22,6 +24,13 @@ const routes: Routes = [
     component: MovieComponent,
     resolve: {
       movie: MovieResolver
+    }
+  },
+  {
+    path: 'person/:id',
+    component: PersonComponent,
+    resolve: {
+      person: PersonResolver
     }
   },
   {
